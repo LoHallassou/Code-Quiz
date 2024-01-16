@@ -22,8 +22,5 @@ startEl.addEventListener('click',function countdown() {
 
 })
 
-function switchToQuestions(){
-    startScreen.classList.toggle('hide');
-    questions.classList.toggle('hide');
-}
+
 
