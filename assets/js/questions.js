@@ -26,6 +26,7 @@ function switchToQuestions(){
     questions.classList.toggle('hide');
 }
 
+const loadQuestions = function() {
 //Gaining random index to select questions and corresponding answers
 let randomIndex = Math.floor(Math.random() * questionTitles.length);
 
@@ -34,6 +35,7 @@ let selectedChoices = choices[randomIndex];
 
 //Displaying the questions and choices on the page
 questionEl.textContent = selectedQuestion;
+
 selectedChoices.forEach(function(choice){
     let button = document.createElement('button');
     button.textContent = choice;
@@ -41,12 +43,40 @@ selectedChoices.forEach(function(choice){
     choicesEl.appendChild(button);
 
 });
-
-function resultOfChoice(event) {
-    let selectedChoice = event.target.textContent;
-    
-    if (selectedChoice === correctAnswers) {
-
-    }
 }
 
+loadQuestions();
+
+const resultOfChoice = function(event) {
+    for (let i=0; i<questionTitles.length; i++) {
+    let selectedChoice = event.target.textContent;
+
+    if (selectedChoice === correctAnswers) {
+        choicesEl.innerHTML = ''
+        loadQuestions();
+        correctAnswer();
+    }
+    else if(selectedChoice !== correctAnswers) {
+        choicesEl.innerHTML = '';
+        loadQuestions();
+        wrongAnswer();
+    }
+
+    
+
+    if (i >= questionTitles.length) {
+        endQuiz();
+    }
+}
+}
+
+const correctAnswer = function() {
+    let borderDiv = document.createElement('div');
+    borderDiv.classList.add('decision-border');
+    borderDiv.textContent = 'Correct!'
+    document.questions.appendChild(borderDiv);
+}
+
+const wrongAnswer = function() {
+
+}
