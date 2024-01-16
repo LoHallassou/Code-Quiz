@@ -47,19 +47,17 @@ selectedChoices.forEach(function(choice){
 
 loadQuestions();
 
-const resultOfChoice = function(event) {
+function resultOfChoice(event) {
     for (let i=0; i<questionTitles.length; i++) {
     let selectedChoice = event.target.textContent;
 
     if (selectedChoice === correctAnswers) {
         choicesEl.innerHTML = ''
         loadQuestions();
-        correctAnswer();
     }
     else if(selectedChoice !== correctAnswers) {
         choicesEl.innerHTML = '';
         loadQuestions();
-        wrongAnswer();
     }
 
     
@@ -70,13 +68,3 @@ const resultOfChoice = function(event) {
 }
 }
 
-const correctAnswer = function() {
-    let borderDiv = document.createElement('div');
-    borderDiv.classList.add('decision-border');
-    borderDiv.textContent = 'Correct!'
-    document.questions.appendChild(borderDiv);
-}
-
-const wrongAnswer = function() {
-
-}
