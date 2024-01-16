@@ -1,12 +1,16 @@
-var startEl = document.querySelector('#start')
-var timeEl = document.querySelector("#time");
+let startEl = document.querySelector('#start')
+let timeEl = document.querySelector("#time");
 
-var secondsLeft = 75;
+
+timeEl.textContent = 75;
+let secondsLeft = 75;
+
 
 //Adding event listener to start button for quiz timer to start
 startEl.addEventListener('click',function countdown() {
+
 //Counts down to 0 and ends quiz when time runs out
-    var timerInterval = setInterval(function() {
+    let timerInterval = setInterval(function() {
     secondsLeft--;
     timeEl.textContent = secondsLeft;
 
@@ -15,5 +19,11 @@ startEl.addEventListener('click',function countdown() {
         endQuiz();
     }
 }, 1000);
+
 })
+
+function switchToQuestions(){
+    startScreen.classList.toggle('hide');
+    questions.classList.toggle('hide');
+}
 
