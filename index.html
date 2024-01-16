@@ -12,7 +12,7 @@
   <body>
     <div class="scores"><a href="highscores.html">View Highscores</a></div>
 
-    <div class="timer">Time: <span id="time">75</span></div>
+    <div class="timer">Time: <span id="time"></span></div>
 
     <div class="wrapper">
       <div id="start-screen" class="start">
@@ -22,12 +22,12 @@
           limit. Keep in mind that incorrect answers will penalize your
           score/time by ten seconds!
         </p>
-        <button id="start">Start Quiz</button>
+        <button id="start" onclick="switchToQuestions()">Start Quiz</button>
       </div>
 
       <div id="questions" class="hide">
         <h2 id="question-title"></h2>
-        <div id="choices" class="choices"></div>
+        <ol id="choices"></ol>
       </div>
 
       <div id="end-screen" class="hide">
