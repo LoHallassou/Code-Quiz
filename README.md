@@ -2,7 +2,7 @@
 
 This is a simple JavaScript <a href="https://lohallassou.github.io/Code-Quiz/">Code Quiz</a> application designed to test your coding knowledge. 
 
-<p><img src = './assets/img/08-web-apis-challenge-demo-gif' alt = 'Code Quiz gif'></p>
+<p><img src = './assets/img/08-web-apis-challenge-demo.gif' alt = 'Code Quiz gif'></p>
 
 The quiz follows the given criteria:
 
