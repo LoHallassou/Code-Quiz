@@ -24,6 +24,9 @@ button {
   color: white;
   border: 0;
   transition: background-color 0.1s;
+  text-align: left;
+  width: 200px;
+  height: 45px;
 }
 
 button:hover {
@@ -43,6 +46,8 @@ ol {
   padding-left: 0px;
   max-height: 400px;
   overflow: auto;
+  display: flex;
+  flex-flow: column wrap;
 }
 
 li {
@@ -88,7 +93,7 @@ li:nth-child(odd) {
   right: 10px;
 }
 
-#questions {
-  display: flex;
-  flex-flow: column wrap;
+#start {
+  text-align: center;
+  width: 120px;
 }
