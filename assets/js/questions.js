@@ -20,12 +20,23 @@ let choices = [
 ];
 let correctAnswers = ['4. All of the above','1. function','2. API','3. inner.HTML','1. document.write','3. DOM','1. Object']
 
+
+
+//Gaining random index to select questions and corresponding answers
+let randomIndex = Math.floor(Math.random() * questionTitles.length);
+
 function loadQuestions() {
-    //Gaining random index to select questions and corresponding answers
+
     let randomIndex = Math.floor(Math.random() * questionTitles.length);
+
+    let quizQuestions = questionTitles.slice();
+    let quizChoices = choices.slice();
+
+    let selectedQuestion = quizQuestions[randomIndex];
+    let selectedChoices = quizChoices[randomIndex];
     
-    let selectedQuestion = questionTitles[randomIndex];
-    let selectedChoices = choices[randomIndex];
+    quizQuestions.splice(randomIndex, 1);
+    quizChoices.splice(randomIndex, 1);
     
     //Displaying the questions and choices on the page
     questionEl.textContent = selectedQuestion;
@@ -35,6 +46,7 @@ function loadQuestions() {
         button.textContent = choice;
         button.addEventListener('click', resultOfChoice);
         choicesEl.appendChild(button);
+
     
     });
     }
