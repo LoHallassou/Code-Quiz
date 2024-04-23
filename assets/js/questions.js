@@ -15,7 +15,7 @@ let choices = [
 ['1. CSS3','2. API','3. HTML5','4. IDE'],
 ['1. console.log','2. prompt','3. innerHTML','4. alert'],
 ['1. document.write', '2. prompt','3. alert','4. print'],
-['1. Javascript','2. API','3. DOM','4. Linux'],
+['1. Javascript','2. RAM','3. DOM','4. Linux'],
 ['1. Object','2. Number','3. String','4. Boolean']
 ];
 let correctAnswers = ['4. All of the above','1. function','2. API','3. inner.HTML','1. document.write','3. DOM','1. Object']
