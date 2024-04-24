@@ -68,10 +68,13 @@ function loadQuestions() {
     let quizQuestion = questionsChoices[questionIndex];
     questionEl.textContent = quizQuestion.question;
     
-    
+    choicesEl.innerHTML = ''
+
    quizQuestion.options.forEach(function(choice){
         let optionButton = document.createElement('button');
         optionButton.setAttribute('class','options')
+        optionButton.setAttribute('value', choice);
+
         optionButton.textContent = choice;
 
         optionButton.addEventListener('click', resultOfChoice);
@@ -88,38 +91,43 @@ function loadQuestions() {
 //     loadQuestions();
 // }
 
+function resultOfChoice() {
+
+if (this.value === questions[questionIndex].answer) {   
+    timerEl.textContent = secondsLeft;
+    feedbackEl.textContent = "Correct!";
+    feedbackEl.style.fontSize = "24px"
+    feedbackEl.style.color = "green";
+}
+
+else {
+    secondsLeft -= 5;
+    if (secondsLeft < 0) {
+      secondsLeft = 0;
+    }
+    feedbackEl.textContent = "Wrong!";
+    feedbackEl.style.fontSize = "24px"
+    feedbackEl.style.color = "red";
+}
+
+
+feedbackEl.setAttribute("class", "feedback");
+  setTimeout(function() {
+    feedbackEl.setAttribute("class", "feedback hide");
+  }, 1000);
+    
+  questionIndex++;
+   
+  if (questionIndex === questionsChoices.length) {
+    endQuiz();
+  } else {
+    loadQuestions();
+  }     
+
+}
+
 
 let buttonPressCount = 0
-
-function resultOfChoice(event) {
-
-    buttonPressCount++;
-    if (answeredIndex.includes(randomIndex())) {
-        randomIndex();
-    }
-    else {
-        answeredIndex.push(randomIndex());
-    }
-
-    for (let i=0; i<questionTitles.length; i++) {
-    let selectedChoice = event.target.textContent;
-
-    if (correctAnswers.includes(selectedChoice)) {
-        choicesEl.innerHTML = ''
-        loadQuestions();
-    }
-    else if (!correctAnswers.includes(selectedChoice)) { 
-        choicesEl.innerHTML = '';
-        if (answeredIndex.includes(randomIndex()) === false) {
-            answeredIndex.push(randomIndex());
-        }
-        else {
-            randomIndex();
-        }
-        loadQuestions();
-    }
-    
-}
 
 function endQuiz() {
     questions.classList.toggle('hide');
@@ -129,5 +137,5 @@ function endQuiz() {
 if (buttonPressCount >= 7) {
     endQuiz();
 }
-}
+
 
