@@ -13,6 +13,7 @@ let feedbackEl = document.querySelector('feedback');
 
 timeEl.textContent = 7 * questionsChoices.length;
 let secondsLeft = 7 * questionsChoices.length;
+let questionIndex = 0;
 
 function startQuiz () {
 
@@ -58,43 +59,35 @@ function startQuiz () {
 // }
 
 //Gaining random index to select questions and corresponding answers
-function randomIndex() {
-    return Math.floor(Math.random() * questionTitles.length);
-}
+// function randomIndex() {
+//     return Math.floor(Math.random() * questionTitles.length);
+// }
 
 function loadQuestions() {
 
-    let quizQuestions = questionTitles.slice();
-    let selectedQuestion = quizQuestions[randomIndex()];
+    let quizQuestion = questionsChoices[questionIndex];
+    questionEl.textContent = quizQuestion.question;
+    
+    
+   quizQuestion.options.forEach(function(choice){
+        let optionButton = document.createElement('button');
+        optionButton.setAttribute('class','options')
+        optionButton.textContent = choice;
 
-    let quizChoices = choices.slice();
-    let selectedChoices = quizChoices[randomIndex()];
-    
-    
-    //Displaying the questions and choices on the page
-    questionEl.textContent = selectedQuestion;
-    
-    selectedChoices.forEach(function(choice){
-        let button = document.createElement('button');
-        button.textContent = choice;
-        button.addEventListener('click', resultOfChoice);
-        choicesEl.appendChild(button);
+        optionButton.addEventListener('click', resultOfChoice);
 
-        console.log(answeredIndex);
+        choicesEl.appendChild(optionButton);
+        
     });
     }
 
 //Function to switch to questions when start button is clicked
-function switchToQuestions(){
-    startScreen.classList.toggle('hide');
-    questions.classList.toggle('hide');
-    loadQuestions();
-}
+// function switchToQuestions(){
+//     startScreen.classList.toggle('hide');
+//     questions.classList.toggle('hide');
+//     loadQuestions();
+// }
 
-function endQuiz() {
-    questions.classList.toggle('hide');
-    endScreen.classList.toggle('hide');
-}
 
 let buttonPressCount = 0
 
@@ -126,6 +119,11 @@ function resultOfChoice(event) {
         loadQuestions();
     }
     
+}
+
+function endQuiz() {
+    questions.classList.toggle('hide');
+    endScreen.classList.toggle('hide');
 }
 
 if (buttonPressCount >= 7) {
