@@ -13,6 +13,7 @@ let feedbackEl = document.querySelector('feedback');
 
 timeEl.textContent = 7 * questionsChoices.length;
 let secondsLeft = 7 * questionsChoices.length;
+let timerInterval;
 let questionIndex = 0;
 
 function startQuiz () {
@@ -23,12 +24,11 @@ function startQuiz () {
     startBtn.addEventListener('click',function countdown() {
 
     //Counts down to 0 and ends quiz when time runs out
-        let timerInterval = setInterval(function() {
+        timerInterval = setInterval(function() {
         secondsLeft--;
         timeEl.textContent = secondsLeft;
         
-        if (secondsLeft === 0) {
-            clearInterval(timerInterval);
+        if (secondsLeft <= 0) {
             endQuiz();
             }
         }, 1000);
@@ -130,12 +130,16 @@ feedbackEl.setAttribute("class", "feedback");
 let buttonPressCount = 0
 
 function endQuiz() {
+
     questions.classList.toggle('hide');
     endScreen.classList.toggle('hide');
+
+    let fScore = document.getElementById('final-score');
+    fScore.textContent = secondsLeft;
+
+    clearInterval(timerInterval);
 }
 
-if (buttonPressCount >= 7) {
-    endQuiz();
-}
+
 
 
